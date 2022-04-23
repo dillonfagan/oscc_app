@@ -20,7 +20,7 @@ class _ScreenState extends State<ScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ocean State Cancer Crushers"),
+        title: const Text("Rides"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

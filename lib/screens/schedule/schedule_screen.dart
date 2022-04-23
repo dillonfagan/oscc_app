@@ -33,7 +33,6 @@ class _ScheduleState extends State<ScheduleScreen> {
                   itemCount: rides.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      color: index == 0 ? Colors.lightBlue[100] : Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(

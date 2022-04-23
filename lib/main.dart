@@ -25,6 +25,21 @@ class BikeTeamApp extends StatelessWidget {
       title: 'OSCC',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.blue[50],
+        backgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          centerTitle: false,
+          backgroundColor: Colors.blue[50],
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+          ),
+          shadowColor: Colors.transparent,
+        ),
+        cardTheme: const CardTheme(
+          elevation: 0.5,
+        ),
       ),
       home: const ScreenController(),
     );
