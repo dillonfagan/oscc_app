@@ -16,17 +16,16 @@ class _ScreenState extends State<ScreenController> {
     const ScheduleScreen(),
   ];
 
-  // void _updateScreen(int value) {
-  //   setState(() => _selectedScreen = value);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Ocean State Cancer Crushers"),
       ),
-      body: _screens[_selectedScreen],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: _screens[_selectedScreen],
+      ),
     );
   }
 }
