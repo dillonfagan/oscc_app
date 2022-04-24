@@ -1,4 +1,3 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'ride.dart';
 
@@ -29,11 +28,5 @@ class ScheduleModel extends ChangeNotifier {
 
   Future<Iterable<Ride>> getAll() async {
     return _dummyRides;
-
-    // return FirebaseFirestore.instance
-    //     .collection('rides')
-    //     .get()
-    //     .then((result) => result.docs)
-    //     .then((docs) => docs.map((doc) => Ride.fromJson(doc.data())));
   }
 }
