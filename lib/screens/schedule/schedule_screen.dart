@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oscc_app/models/schedule/schedule_model.dart';
+import 'package:oscc_app/screens/schedule/padded_text.dart';
 import 'package:provider/provider.dart';
 import '../../models/schedule/ride.dart';
 
@@ -34,29 +35,30 @@ class _ScheduleState extends State<ScheduleScreen> {
                   itemBuilder: (context, index) {
                     return Card(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding:
+                            const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
                         child: Row(
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                PaddedText(
                                   rides[index].title!,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                   ),
                                 ),
-                                Text(rides[index].location!),
+                                PaddedText(rides[index].location!),
                               ],
                             ),
                             const Spacer(),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(rides[index].date!),
-                                Text("${rides[index].miles!} miles"),
-                                Text(rides[index].difficulty!),
+                                PaddedText(rides[index].date!),
+                                PaddedText("${rides[index].miles!} miles"),
+                                PaddedText(rides[index].difficulty!),
                               ],
                             ),
                           ],
