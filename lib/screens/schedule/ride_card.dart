@@ -33,6 +33,7 @@ class RideCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 _DateText(ride: ride),
+                PaddedText(DateFormat('h:mm a').format(ride.date!)),
                 PaddedText("${ride.miles!} miles"),
                 PaddedText(ride.difficulty!),
               ],
@@ -59,6 +60,6 @@ class _DateText extends StatelessWidget {
               color: Colors.red,
             ),
           )
-        : PaddedText(DateFormat('MM/dd/yy').format(ride.date!));
+        : PaddedText(DateFormat('M/d/yy').format(ride.date!));
   }
 }
