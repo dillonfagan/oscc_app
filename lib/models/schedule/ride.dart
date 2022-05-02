@@ -1,18 +1,36 @@
+import 'dart:convert';
+
 class Ride {
   String? title;
-  String? date;
+  DateTime? date;
   String? location;
-  double? miles;
+  int? miles;
   String? difficulty;
+
+  bool get isToday {
+    return DateTime.now().isSameDate(date!);
+  }
 
   Ride({this.title, this.date, this.location, this.miles, this.difficulty});
 
-  Ride.fromJson(Map<String, Object?> json)
-      : this(
-          title: json['title'] as String,
-          date: json['date'] as String,
-          location: json['location'] as String,
-          miles: json['miles'] as double,
-          difficulty: json['difficulty'] as String,
-        );
+  factory Ride.fromJson(Map<String, Object?> json) {
+    return Ride(
+      title: json['title'] as String,
+      date: DateTime.parse(json['date'] as String),
+      location: json['location'] as String,
+      miles: json['miles'] as int,
+      difficulty: json['difficulty'] as String,
+    );
+  }
+
+  static List<Ride> decodeList(String jsonString) {
+    final parsed = json.decode(jsonString).cast<Map<String, dynamic>>();
+    return parsed.map<Ride>((json) => Ride.fromJson(json)).toList();
+  }
+}
+
+extension DateTimeCompare on DateTime {
+  bool isSameDate(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
+  }
 }

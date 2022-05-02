@@ -38,7 +38,8 @@ class BikeTeamApp extends StatelessWidget {
           shadowColor: Colors.transparent,
         ),
         cardTheme: const CardTheme(
-          elevation: 0.5,
+          elevation: 4.0,
+          shadowColor: Color(0xFFFFFFFF),
         ),
       ),
       home: const ScreenController(),

@@ -25,7 +25,8 @@ class _ScheduleState extends State<ScheduleScreen> {
                 }
 
                 if (!snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                      child: CircularProgressIndicator(color: Colors.red));
                 }
 
                 final rides = snapshot.requireData.toList();

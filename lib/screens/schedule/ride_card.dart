@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:oscc_app/models/schedule/ride.dart';
 import 'package:oscc_app/screens/schedule/padded_text.dart';
 
@@ -31,7 +32,7 @@ class RideCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                PaddedText(ride.date!),
+                _DateText(ride: ride),
                 PaddedText("${ride.miles!} miles"),
                 PaddedText(ride.difficulty!),
               ],
@@ -40,5 +41,24 @@ class RideCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _DateText extends StatelessWidget {
+  final Ride ride;
+
+  const _DateText({required this.ride});
+
+  @override
+  Widget build(BuildContext context) {
+    return ride.isToday
+        ? const PaddedText(
+            "Today!",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
+          )
+        : PaddedText(DateFormat('MM/dd/yy').format(ride.date!));
   }
 }
