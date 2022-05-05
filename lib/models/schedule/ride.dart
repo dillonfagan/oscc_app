@@ -16,7 +16,7 @@ class Ride {
   factory Ride.fromJson(Map<String, Object?> json) {
     return Ride(
       title: json['title'] as String,
-      date: DateTime.parse(json['date'] as String),
+      date: DateTime.parse(json['date'] as String).toLocal(),
       location: json['location'] as String,
       miles: json['miles'] as int,
       difficulty: json['difficulty'] as String,
