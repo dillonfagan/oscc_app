@@ -1,39 +1,21 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'ride.dart';
 
 class ScheduleModel extends ChangeNotifier {
-  static final List<Ride> _dummyRides = [
-    Ride(
-      title: "Narragansett",
-      location: "DiCristofaro Park",
-      date: "4/16/22",
-      miles: 25.0,
-      difficulty: "Medium",
-    ),
-    Ride(
-      title: "South County",
-      location: "Veterans' Memorial Cemetery",
-      date: "4/12/22",
-      miles: 15.0,
-      difficulty: "Easy",
-    ),
-    Ride(
-      title: "Big River Mountain Bike Ride",
-      location: "301 South County Trail",
-      date: "4/12/22",
-      miles: 7.0,
-      difficulty: "Medium",
-    ),
-  ];
-
   Future<Iterable<Ride>> getAll() async {
-    return _dummyRides;
+    final response = await http.get(Uri.parse(
+        "https://script.google.com/macros/s/AKfycbzfZLZvP_mRFP9id1FOd-XG50k9IC4BcYfo0QYJgyTeucDfeA-OYk5XOqA_aKpgXVIk/exec"));
 
-    // return FirebaseFirestore.instance
-    //     .collection('rides')
-    //     .get()
-    //     .then((result) => result.docs)
-    //     .then((docs) => docs.map((doc) => Ride.fromJson(doc.data())));
+    if (response.statusCode != 200) throw "Unable to retrieve ride schedule.";
+    Iterable<Ride> rides = Ride.decodeList(response.body);
+
+    if (skipPastRides) {
+      rides = rides.where((ride) => ride.date!.isAfter(DateTime.now()));
+    }
+
+    return rides;
   }
+
+  static bool skipPastRides = true;
 }
