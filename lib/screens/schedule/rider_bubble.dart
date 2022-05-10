@@ -10,8 +10,8 @@ class RiderBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.amber[200],
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        color: Colors.blue[100],
+        borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
       padding: const EdgeInsets.fromLTRB(4.0, 2.0, 4.0, 2.0),
       child: Text(rider.name!),

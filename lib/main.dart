@@ -41,6 +41,11 @@ class BikeTeamApp extends StatelessWidget {
           elevation: 4.0,
           shadowColor: Color(0xFFFFFFFF),
         ),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       home: const ScreenController(),
     );
