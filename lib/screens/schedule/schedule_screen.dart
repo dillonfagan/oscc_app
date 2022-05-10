@@ -35,9 +35,11 @@ class _ScheduleState extends State<ScheduleScreen> {
                   return const Center(child: Text("No Rides Scheduled"));
                 }
 
-                return ListView.builder(
+                return ListView.separated(
                   itemCount: rides.length,
                   itemBuilder: (context, index) => RideCard(rides[index]),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8.0),
                 );
               }),
         );
