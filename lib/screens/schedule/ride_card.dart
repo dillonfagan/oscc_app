@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:oscc_app/models/schedule/ride.dart';
-import 'package:oscc_app/screens/schedule/padded_text.dart';
+import 'padded_text.dart';
+import 'rider_bubble.dart';
 
 class RideCard extends StatelessWidget {
   final Ride ride;
@@ -26,6 +27,12 @@ class RideCard extends StatelessWidget {
                   ),
                 ),
                 PaddedText(ride.location!),
+                const SizedBox(height: 10.0),
+                Wrap(
+                  spacing: 10.0,
+                  children:
+                      ride.riders!.map((r) => RiderBubble(rider: r)).toList(),
+                ),
               ],
             ),
             const Spacer(),
