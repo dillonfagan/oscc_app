@@ -35,10 +35,10 @@ class BikeTeamApp extends StatelessWidget {
             fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
-          shadowColor: Colors.transparent,
+          elevation: 0,
         ),
         cardTheme: const CardTheme(
-          elevation: 4.0,
+          elevation: 1,
           shadowColor: Color(0xFFFFFFFF),
         ),
         textTheme: const TextTheme(
