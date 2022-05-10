@@ -31,6 +31,10 @@ class _ScheduleState extends State<ScheduleScreen> {
 
                 final rides = snapshot.requireData.toList();
 
+                if (rides.isEmpty) {
+                  return const Center(child: Text("No Rides Scheduled"));
+                }
+
                 return ListView.builder(
                   itemCount: rides.length,
                   itemBuilder: (context, index) => RideCard(rides[index]),
