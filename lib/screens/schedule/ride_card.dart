@@ -27,12 +27,6 @@ class RideCard extends StatelessWidget {
                   ),
                 ),
                 PaddedText(ride.location!),
-                const SizedBox(height: 10.0),
-                Wrap(
-                  spacing: 10.0,
-                  children:
-                      ride.riders!.map((r) => RiderBubble(rider: r)).toList(),
-                ),
               ],
             ),
             const Spacer(),
