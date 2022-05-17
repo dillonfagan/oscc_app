@@ -18,6 +18,9 @@ class _ScheduleState extends State<ScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Schedule"),
+      ),
       body: StreamBuilder<Iterable<Ride>>(
         stream: _rides,
         builder: (context, snapshot) {

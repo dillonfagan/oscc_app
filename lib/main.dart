@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oscc_app/models/schedule/schedule_model.dart';
-import 'package:oscc_app/screens/screen_controller.dart';
+import 'package:oscc_app/screens/schedule/schedule_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -47,7 +47,7 @@ class BikeTeamApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const ScreenController(),
+      home: const ScheduleScreen(),
     );
   }
 }
