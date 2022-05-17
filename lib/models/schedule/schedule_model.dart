@@ -12,6 +12,8 @@ class ScheduleModel extends ChangeNotifier {
 
 class RidesAPI {
   Future<Iterable<Ride>> getAll({bool skipPastRides = true}) async {
+    if (kDebugMode) print("Fetching from Rides API...");
+
     final response = await http.get(Uri.parse(
         "https://script.google.com/macros/s/AKfycbzfZLZvP_mRFP9id1FOd-XG50k9IC4BcYfo0QYJgyTeucDfeA-OYk5XOqA_aKpgXVIk/exec"));
 
