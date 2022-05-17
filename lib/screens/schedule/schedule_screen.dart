@@ -19,7 +19,10 @@ class _ScheduleState extends State<ScheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Schedule"),
+        title: const Text("Ride Schedule"),
+        actions: [
+          IconButton(onPressed: _refresh, icon: const Icon(Icons.refresh)),
+        ],
       ),
       body: StreamBuilder<Iterable<Ride>>(
         stream: _rides,

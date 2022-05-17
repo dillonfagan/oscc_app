@@ -27,15 +27,14 @@ class BikeTeamApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.blue[50],
         backgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          centerTitle: false,
-          backgroundColor: Colors.blue[50],
-          titleTextStyle: const TextStyle(
-            color: Colors.black,
-            fontSize: 36,
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          backgroundColor: Color.fromARGB(255, 80, 127, 161),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
-          elevation: 0,
         ),
         cardTheme: const CardTheme(
           elevation: 1,
