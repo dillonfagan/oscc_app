@@ -49,7 +49,7 @@ class _ScheduleState extends State<ScheduleScreen> {
   }
 
   Future<void> _refresh() async {
-    return Future.delayed(const Duration(milliseconds: 1500), () {
+    return Future.delayed(const Duration(milliseconds: 1200), () {
       final rides = _api.getAll().asStream();
       setState(() => _rides = rides);
     });
