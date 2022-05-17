@@ -31,11 +31,14 @@ class _ScheduleState extends State<ScheduleScreen> {
           }
 
           final rides = snapshot.requireData.toList();
-          final listView = _listView(rides);
+
+          if (rides.isEmpty) {
+            return const Center(child: Text("No Rides Scheduled"));
+          }
 
           return RefreshIndicator(
             onRefresh: _refresh,
-            child: listView,
+            child: _listView(rides),
           );
         },
       ),
@@ -50,10 +53,6 @@ class _ScheduleState extends State<ScheduleScreen> {
   }
 
   Widget _listView(List<Ride> rides) {
-    if (rides.isEmpty) {
-      return const Center(child: Text("No Rides Scheduled"));
-    }
-
     return ListView.separated(
       itemCount: rides.length,
       itemBuilder: (context, index) => RideCard(rides[index]),
