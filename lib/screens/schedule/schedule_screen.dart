@@ -57,6 +57,7 @@ class _ScheduleState extends State<ScheduleScreen> {
 
   Widget _listView(List<Ride> rides) {
     return ListView.separated(
+      padding: const EdgeInsets.all(8.0),
       itemCount: rides.length,
       itemBuilder: (context, index) => RideCard(rides[index]),
       separatorBuilder: (context, index) => const SizedBox(height: 8.0),
