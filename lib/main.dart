@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oscc_app/models/schedule/schedule_model.dart';
-import 'package:oscc_app/screens/screen_controller.dart';
+import 'package:oscc_app/screens/schedule/schedule_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -27,22 +27,26 @@ class BikeTeamApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.blue[50],
         backgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          centerTitle: false,
-          backgroundColor: Colors.blue[50],
-          titleTextStyle: const TextStyle(
-            color: Colors.black,
-            fontSize: 36,
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          backgroundColor: Color.fromARGB(255, 80, 127, 161),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
-          shadowColor: Colors.transparent,
         ),
         cardTheme: const CardTheme(
-          elevation: 4.0,
+          elevation: 1,
           shadowColor: Color(0xFFFFFFFF),
         ),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
-      home: const ScreenController(),
+      home: const ScheduleScreen(),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:oscc_app/models/schedule/ride.dart';
-import 'package:oscc_app/screens/schedule/padded_text.dart';
+import 'padded_text.dart';
 
 class RideCard extends StatelessWidget {
   final Ride ride;
