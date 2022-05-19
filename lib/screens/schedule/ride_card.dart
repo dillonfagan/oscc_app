@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:oscc_app/models/schedule/ride.dart';
+import 'package:oscc_app/screens/schedule/rider_bubble.dart';
 import 'padded_text.dart';
 
 class RideCard extends StatelessWidget {
@@ -13,30 +14,52 @@ class RideCard extends StatelessWidget {
     return Card(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                PaddedText(
-                  ride.title!,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    PaddedText(
+                      ride.title!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    PaddedText(ride.location!),
+                  ],
                 ),
-                PaddedText(ride.location!),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    _DateText(ride: ride),
+                    PaddedText(DateFormat('h:mm a').format(ride.date!)),
+                    PaddedText("${ride.miles!} miles"),
+                    PaddedText(ride.difficulty!),
+                  ],
+                ),
               ],
             ),
-            const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                _DateText(ride: ride),
-                PaddedText(DateFormat('h:mm a').format(ride.date!)),
-                PaddedText("${ride.miles!} miles"),
-                PaddedText(ride.difficulty!),
-              ],
+            Wrap(
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              spacing: 8.0,
+              children: ride.riders!
+                  .map((rider) => Chip(
+                        label: Text(rider.name!),
+                        backgroundColor: Theme.of(context).primaryColorLight,
+                        avatar: CircleAvatar(
+                          backgroundColor: Theme.of(context).primaryColorDark,
+                          child:
+                              Text(rider.name!.substring(0, 1).toUpperCase()),
+                        ),
+                      ))
+                  .toList(),
             ),
           ],
         ),
