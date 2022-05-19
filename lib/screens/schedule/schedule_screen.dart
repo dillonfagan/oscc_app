@@ -45,6 +45,7 @@ class _ScheduleState extends State<ScheduleScreen> {
           return RefreshIndicator(
             onRefresh: _refresh,
             child: _listView(rides),
+            color: Theme.of(context).primaryColorDark,
           );
         },
       ),

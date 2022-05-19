@@ -24,13 +24,13 @@ class BikeTeamApp extends StatelessWidget {
     return MaterialApp(
       title: 'OSCC',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.blue[50],
+        primarySwatch: ThemeColor.primarySwatch,
+        scaffoldBackgroundColor: ThemeColor.primarySwatch[100],
         backgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 80, 127, 161),
-          titleTextStyle: TextStyle(
+          backgroundColor: ThemeColor.primarySwatch[500],
+          titleTextStyle: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -38,7 +38,6 @@ class BikeTeamApp extends StatelessWidget {
         ),
         cardTheme: const CardTheme(
           elevation: 1,
-          shadowColor: Color(0xFFFFFFFF),
         ),
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
@@ -48,5 +47,25 @@ class BikeTeamApp extends StatelessWidget {
       ),
       home: const ScheduleScreen(),
     );
+  }
+}
+
+class ThemeColor {
+  static MaterialColor get primarySwatch => _getPrimaryColor();
+
+  static MaterialColor _getPrimaryColor() {
+    var swatch = Map<int, Color>();
+    swatch[50] = const Color.fromARGB(255, 238, 243, 247);
+    swatch[100] = const Color.fromARGB(255, 204, 219, 230);
+    swatch[200] = const Color.fromARGB(255, 170, 195, 213);
+    swatch[300] = const Color.fromARGB(255, 136, 171, 196);
+    swatch[400] = const Color.fromARGB(255, 102, 146, 179);
+    swatch[500] = const Color.fromARGB(255, 76, 121, 153);
+    swatch[600] = const Color.fromARGB(255, 59, 94, 119);
+    swatch[700] = const Color.fromARGB(255, 42, 67, 85);
+    swatch[800] = const Color.fromARGB(255, 25, 40, 51);
+    swatch[900] = const Color.fromARGB(255, 8, 13, 17);
+
+    return MaterialColor(0xFF4C7999, swatch);
   }
 }
