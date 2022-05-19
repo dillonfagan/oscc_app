@@ -49,17 +49,8 @@ class RideCard extends StatelessWidget {
               alignment: WrapAlignment.start,
               crossAxisAlignment: WrapCrossAlignment.start,
               spacing: 8.0,
-              children: ride.riders!
-                  .map((rider) => Chip(
-                        label: Text(rider.name!),
-                        backgroundColor: Theme.of(context).primaryColorLight,
-                        avatar: CircleAvatar(
-                          backgroundColor: Theme.of(context).primaryColorDark,
-                          child:
-                              Text(rider.name!.substring(0, 1).toUpperCase()),
-                        ),
-                      ))
-                  .toList(),
+              children:
+                  ride.riders!.map((rider) => RiderBubble(rider)).toList(),
             ),
           ],
         ),

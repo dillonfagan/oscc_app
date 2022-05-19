@@ -4,17 +4,17 @@ import 'package:oscc_app/models/schedule/rider.dart';
 class RiderBubble extends StatelessWidget {
   final Rider rider;
 
-  const RiderBubble({required this.rider});
+  const RiderBubble(this.rider);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue[100],
-        borderRadius: const BorderRadius.all(Radius.circular(5)),
+    return Chip(
+      label: Text(rider.name!),
+      backgroundColor: Theme.of(context).primaryColorLight,
+      avatar: CircleAvatar(
+        backgroundColor: Theme.of(context).primaryColorDark,
+        child: Text(rider.name!.substring(0, 1).toUpperCase()),
       ),
-      padding: const EdgeInsets.fromLTRB(4.0, 2.0, 4.0, 2.0),
-      child: Text(rider.name!),
     );
   }
 }
