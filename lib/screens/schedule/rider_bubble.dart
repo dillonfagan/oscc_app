@@ -13,6 +13,7 @@ class RiderBubble extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColorLight,
       avatar: CircleAvatar(
         backgroundColor: Theme.of(context).primaryColorDark,
+        foregroundColor: Colors.white,
         child: Text(rider.name!.substring(0, 1).toUpperCase()),
       ),
     );
