@@ -32,8 +32,9 @@ class _ScheduleState extends State<ScheduleScreen> {
           }
 
           if (!snapshot.hasData) {
-            return const Center(
-                child: CircularProgressIndicator(color: Colors.blue));
+            return Center(
+                child: CircularProgressIndicator(
+                    color: Theme.of(context).primaryColor));
           }
 
           final rides = snapshot.requireData.toList();
@@ -53,8 +54,8 @@ class _ScheduleState extends State<ScheduleScreen> {
   }
 
   Future<void> _refresh() async {
+    final rides = _api.getAll().asStream();
     return Future.delayed(const Duration(milliseconds: 1200), () {
-      final rides = _api.getAll().asStream();
       setState(() => _rides = rides);
     });
   }
