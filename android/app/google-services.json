@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "854674557315",
+    "project_id": "oscc-app",
+    "storage_bucket": "oscc-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854674557315:android:dc54ecbcef7e7456270eb6",
+        "android_client_info": {
+          "package_name": "com.example.oscc_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854674557315-a0hs6ptd74f8a5d8tkrbcu455n7v5eq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqxSltNOdHHAWsVk-l_4l_2LyUdqKJMSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854674557315-a0hs6ptd74f8a5d8tkrbcu455n7v5eq5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "854674557315-2b9hj2rv70dltij05k7ngc24he0bbl0r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "coop.starboard.oscc"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
