@@ -12,19 +12,22 @@ class ScheduleModel extends ChangeNotifier {
 
 class RidesAPI {
   Future<Iterable<Ride>> getAll({bool skipPastRides = true}) async {
-    final snapshot = await FirebaseDatabase.instance.ref().get();
-
-    Iterable<Ride> rides = Ride.decodeList(snapshot.value as List);
-
-    if (kDebugMode) {
-      print("Data received from Firebase.");
-      print(snapshot.value);
-    }
+    Iterable<Ride> rides = await FirebaseDatabase.instance
+        .ref()
+        .get()
+        .then((snapshot) => snapshot.children)
+        .then((rideSnapshots) => Ride.decodeList(rideSnapshots));
 
     if (skipPastRides) {
       rides = rides.where((ride) => ride.date!.isAfter(DateTime.now()));
     }
 
     return rides;
+  }
+
+  rsvp(String id, String name) async {
+    final database = FirebaseDatabase.instance.ref("$id/riders");
+    final newRider = database.push();
+    await newRider.set({"name": name});
   }
 }

@@ -1,6 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'rider.dart';
 
 class Ride {
+  String id;
   String? title;
   DateTime? date;
   String? location;
@@ -13,6 +15,7 @@ class Ride {
   }
 
   Ride({
+    required this.id,
     this.title,
     this.date,
     this.location,
@@ -21,23 +24,26 @@ class Ride {
     this.riders,
   });
 
-  factory Ride.fromJson(dynamic json) {
+  factory Ride.fromJson(String id, dynamic json) {
     return Ride(
+      id: id,
       title: json['title'] as String,
       date: DateTime.fromMillisecondsSinceEpoch(json['date'] as int).toLocal(),
       location: json['publicMeetingLocation'] as String,
       miles: json['miles'] as int,
       difficulty: json['difficulty'] as String,
-      riders: mapRiders(json['riders'] as List),
+      riders: mapRiders((json['riders'] as Map).values.toList()),
     );
   }
 
-  static List<Ride> decodeList(List<dynamic>? json) {
-    if (json == null) {
-      return List.empty();
-    }
+  factory Ride.fromSnapshot(DataSnapshot snapshot) {
+    final key = snapshot.key!;
+    final json = snapshot.value!;
+    return Ride.fromJson(key, json);
+  }
 
-    return json.map<Ride>((ride) => Ride.fromJson(ride)).toList();
+  static List<Ride> decodeList(Iterable<DataSnapshot> snapshots) {
+    return snapshots.map((snapshot) => Ride.fromSnapshot(snapshot)).toList();
   }
 
   static List<Rider> mapRiders(List<dynamic>? jsonList) {
