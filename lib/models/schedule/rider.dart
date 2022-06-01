@@ -3,7 +3,7 @@ class Rider {
 
   Rider({this.name});
 
-  factory Rider.fromJson(Map<String, Object?> json) {
+  factory Rider.fromJson(dynamic json) {
     return Rider(name: json['name'] as String);
   }
 }

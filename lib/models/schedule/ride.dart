@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'rider.dart';
 
 class Ride {
@@ -22,26 +21,28 @@ class Ride {
     this.riders,
   });
 
-  factory Ride.fromJson(Map<String, Object?> json) {
+  factory Ride.fromJson(dynamic json) {
     return Ride(
       title: json['title'] as String,
-      date: DateTime.parse(json['date'] as String).toLocal(),
-      location: json['location'] as String,
+      date: DateTime.fromMillisecondsSinceEpoch(json['date'] as int).toLocal(),
+      location: json['publicMeetingLocation'] as String,
       miles: json['miles'] as int,
       difficulty: json['difficulty'] as String,
-      riders: mapRiders(json['riders'] as List<dynamic>),
+      riders: mapRiders(json['riders'] as List),
     );
   }
 
-  static List<Ride> decodeList(String jsonString) {
-    final parsed = json.decode(jsonString).cast<Map<String, dynamic>>();
-    return parsed.map<Ride>((json) => Ride.fromJson(json)).toList();
+  static List<Ride> decodeList(List<dynamic>? json) {
+    if (json == null) {
+      return List.empty();
+    }
+
+    return json.map<Ride>((ride) => Ride.fromJson(ride)).toList();
   }
 
-  static List<Rider> mapRiders(List<dynamic> jsonList) {
-    return jsonList
-        .map((e) => Rider.fromJson(e as Map<String, Object?>))
-        .toList();
+  static List<Rider> mapRiders(List<dynamic>? jsonList) {
+    if (jsonList == null) return List.empty();
+    return jsonList.map((e) => Rider.fromJson(e)).toList();
   }
 }
 
