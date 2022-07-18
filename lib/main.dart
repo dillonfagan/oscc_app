@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:oscc_app/auth/pages/signin/signin.dart';
 import 'package:oscc_app/models/schedule/schedule_model.dart';
-import 'package:oscc_app/screens/schedule/schedule_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  await Supabase.initialize(
+    url: 'https://msiatrcehrxebtqkujbn.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zaWF0cmNlaHJ4ZWJ0cWt1amJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTY4NjI2MzAsImV4cCI6MTk3MjQzODYzMH0.kT1dKs9XPFj7OIsw9s0iRsSl3-rAfNBFNcAtlRbx8F0',
+  );
   runApp(
     MultiProvider(
       providers: [
@@ -28,13 +34,14 @@ class BikeTeamApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.blue[50],
         backgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
-          centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 80, 127, 161),
+          centerTitle: false,
           titleTextStyle: TextStyle(
-            color: Colors.white,
+            color: Colors.blue,
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 32,
           ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
         ),
         cardTheme: const CardTheme(
           elevation: 1,
@@ -46,7 +53,7 @@ class BikeTeamApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const ScheduleScreen(),
+      home: const SigninPage(),
     );
   }
 }
