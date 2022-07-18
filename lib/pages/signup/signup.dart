@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:oscc_app/common/layouts/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SigninPage extends StatefulWidget {
-  const SigninPage({Key? key}) : super(key: key);
-
+class SignupPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SigninPageState();
+    return _SignupPageState();
   }
 }
 
-class _SigninPageState extends State<SigninPage> {
+class _SignupPageState extends State<SignupPage> {
   bool _isLoading = false;
   String? _error;
-  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  Future<void> _signIn(BuildContext context) async {
+  Future<void> _signUp(BuildContext context) async {
+    if (_passwordController.text != _confirmPasswordController.text) {
+      setState(() => _error =
+          'Passwords do not match. Make sure they match before signing up.');
+      return;
+    }
+
     setState(() => _isLoading = true);
 
     final supabase = Supabase.instance.client;
-    final response = await supabase.auth.signIn(
-      phone: _phoneController.text,
-      password: _passwordController.text,
-    );
+    final response = await supabase.auth
+        .signUp(_emailController.text, _passwordController.text);
 
     if (response.error != null) {
       setState(() {
@@ -43,19 +45,22 @@ class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      title: 'Login',
+      title: 'Sign up',
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         children: [
           TextFormField(
-            controller: _phoneController,
-            decoration: const InputDecoration(labelText: 'Phone'),
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            controller: _emailController,
+            decoration: const InputDecoration(labelText: 'Email'),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: _passwordController,
             decoration: const InputDecoration(labelText: 'Password'),
+          ),
+          TextFormField(
+            controller: _confirmPasswordController,
+            decoration: const InputDecoration(labelText: 'Confirm Password'),
           ),
           const SizedBox(height: 32),
           if (_error != null)
@@ -67,10 +72,10 @@ class _SigninPageState extends State<SigninPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton.large(
-        onPressed: _isLoading ? null : () => _signIn(context),
+        onPressed: _isLoading ? null : () => _signUp(context),
         child: _isLoading
             ? CircularProgressIndicator(color: Colors.blue[100])
-            : const Text('Log In'),
+            : const Text('Sign Up'),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),

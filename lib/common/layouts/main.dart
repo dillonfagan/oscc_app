@@ -4,11 +4,13 @@ class MainLayout extends StatelessWidget {
   final String title;
   final Widget body;
   final Widget? floatingActionButton;
+  final BottomNavigationBar? bottomNavigationBar;
 
   const MainLayout({
     required this.title,
     required this.body,
     this.floatingActionButton,
+    this.bottomNavigationBar,
   });
 
   @override
@@ -19,6 +21,7 @@ class MainLayout extends StatelessWidget {
       ),
       body: body,
       floatingActionButton: floatingActionButton,
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

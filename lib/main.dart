@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:oscc_app/auth/pages/signin/signin.dart';
 import 'package:oscc_app/models/schedule/schedule_model.dart';
+import 'package:oscc_app/pages/signin/signin.dart';
+import 'package:oscc_app/pages/signup/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'pages/rides/rides.dart';
 
 Future<void> main() async {
   await Supabase.initialize(
@@ -53,7 +55,12 @@ class BikeTeamApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SigninPage(),
+      home: RidesPage(),
+      routes: {
+        '/login': (context) => const SigninPage(),
+        '/signup': (context) => SignupPage(),
+        '/rides': (context) => RidesPage(),
+      },
     );
   }
 }
