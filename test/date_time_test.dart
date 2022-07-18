@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:oscc_app/models/schedule/ride.dart';
+import 'package:oscc_app/models/bike_ride.dart';
 
 void main() {
   test("two DateTime.now() instances are same dates", () {

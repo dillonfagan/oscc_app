@@ -1,5 +1,3 @@
-import 'package:oscc_app/models/schedule/ride.dart';
-
 class BikeRide {
   String? id;
   String? title;
@@ -27,5 +25,11 @@ class BikeRide {
       publicLocation: map['public_location'] as String?,
       date: DateTime.parse(map['timestamp'] as String),
     );
+  }
+}
+
+extension DateTimeCompare on DateTime {
+  bool isSameDate(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
   }
 }

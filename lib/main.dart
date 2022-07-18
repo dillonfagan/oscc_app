@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:oscc_app/models/schedule/schedule_model.dart';
 import 'package:oscc_app/pages/signin/signin.dart';
 import 'package:oscc_app/pages/signup/signup.dart';
-import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'pages/rides/rides.dart';
 
@@ -12,16 +10,7 @@ Future<void> main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zaWF0cmNlaHJ4ZWJ0cWt1amJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTY4NjI2MzAsImV4cCI6MTk3MjQzODYzMH0.kT1dKs9XPFj7OIsw9s0iRsSl3-rAfNBFNcAtlRbx8F0',
   );
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => ScheduleModel(),
-        ),
-      ],
-      child: const BikeTeamApp(),
-    ),
-  );
+  runApp(const BikeTeamApp());
 }
 
 class BikeTeamApp extends StatelessWidget {
