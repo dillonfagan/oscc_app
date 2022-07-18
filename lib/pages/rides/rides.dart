@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../../common/layouts/nav.dart';
-import '../../auth/auth_required_state.dart';
 import '../../models/bike_ride.dart';
 import 'ride_card.dart';
 
@@ -12,7 +10,7 @@ class RidesPage extends StatefulWidget {
   }
 }
 
-class _RidesPageState extends AuthRequiredState<RidesPage> {
+class _RidesPageState extends State<RidesPage> {
   Stream<Iterable<BikeRide>> _rides = Stream.value([]);
 
   Future<void> _getRides() async {
@@ -46,39 +44,37 @@ class _RidesPageState extends AuthRequiredState<RidesPage> {
   }
 
   @override
-  void onAuthenticated(Session session) {
+  void initState() {
+    super.initState();
     _getRides();
   }
 
   @override
   Widget build(BuildContext context) {
-    return NavLayout(
-      title: 'Rides',
-      body: StreamBuilder<Iterable<BikeRide>>(
-        initialData: const [],
-        stream: _rides,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text(snapshot.error.toString()));
-          }
+    return StreamBuilder<Iterable<BikeRide>>(
+      initialData: const [],
+      stream: _rides,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(child: Text(snapshot.error.toString()));
+        }
 
-          if (!snapshot.hasData) {
-            return const Center(
-                child: CircularProgressIndicator(color: Colors.blue));
-          }
+        if (!snapshot.hasData) {
+          return const Center(
+              child: CircularProgressIndicator(color: Colors.blue));
+        }
 
-          final rides = snapshot.requireData.toList();
+        final rides = snapshot.requireData.toList();
 
-          if (rides.isEmpty) {
-            return const Center(child: Text("No Rides Scheduled"));
-          }
+        if (rides.isEmpty) {
+          return const Center(child: Text("No Rides Scheduled"));
+        }
 
-          return RefreshIndicator(
-            onRefresh: _getRides,
-            child: _listView(rides),
-          );
-        },
-      ),
+        return RefreshIndicator(
+          onRefresh: _getRides,
+          child: _listView(rides),
+        );
+      },
     );
   }
 }

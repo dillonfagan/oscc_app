@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:oscc_app/common/layouts/app.dart';
 import 'package:oscc_app/pages/signin/signin.dart';
 import 'package:oscc_app/pages/signup/signup.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'pages/rides/rides.dart';
 
 Future<void> main() async {
   await Supabase.initialize(
@@ -44,11 +44,10 @@ class BikeTeamApp extends StatelessWidget {
           ),
         ),
       ),
-      home: RidesPage(),
+      home: AppLayout(),
       routes: {
         '/login': (context) => const SigninPage(),
         '/signup': (context) => SignupPage(),
-        '/rides': (context) => RidesPage(),
       },
     );
   }
