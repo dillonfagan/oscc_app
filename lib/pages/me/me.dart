@@ -10,6 +10,9 @@ class MePage extends StatefulWidget {
 class _MePageState extends State<MePage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Me Page'));
+    return Scaffold(
+      appBar: AppBar(title: const Text('Me')),
+      body: const Center(child: Text('Me Page')),
+    );
   }
 }

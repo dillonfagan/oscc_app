@@ -51,30 +51,38 @@ class _RidesPageState extends State<RidesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Iterable<BikeRide>>(
-      initialData: const [],
-      stream: _rides,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Center(child: Text(snapshot.error.toString()));
-        }
+    return Scaffold(
+      appBar: AppBar(title: const Text('Rides')),
+      body: StreamBuilder<Iterable<BikeRide>>(
+        initialData: const [],
+        stream: _rides,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
 
-        if (!snapshot.hasData) {
-          return const Center(
-              child: CircularProgressIndicator(color: Colors.blue));
-        }
+          if (!snapshot.hasData) {
+            return const Center(
+                child: CircularProgressIndicator(color: Colors.blue));
+          }
 
-        final rides = snapshot.requireData.toList();
+          final rides = snapshot.requireData.toList();
 
-        if (rides.isEmpty) {
-          return const Center(child: Text("No Rides Scheduled"));
-        }
+          if (rides.isEmpty) {
+            return const Center(child: Text("No Rides Scheduled"));
+          }
 
-        return RefreshIndicator(
-          onRefresh: _getRides,
-          child: _listView(rides),
-        );
-      },
+          return RefreshIndicator(
+            onRefresh: _getRides,
+            child: _listView(rides),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.red,
+        onPressed: () {},
+      ),
     );
   }
 }

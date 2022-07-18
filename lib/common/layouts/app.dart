@@ -12,7 +12,6 @@ class AppLayout extends StatefulWidget {
 
 class _AppLayoutState extends AuthRequiredState<AppLayout> {
   int _selectedPage = 0;
-  final List<String> _titles = ['Rides', 'Me'];
   final List<Widget> _pages = [RidesPage(), MePage()];
 
   void _onNavigationTap(int index) {
@@ -24,9 +23,6 @@ class _AppLayoutState extends AuthRequiredState<AppLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_titles[_selectedPage]),
-      ),
       body: IndexedStack(
         children: _pages,
         index: _selectedPage,
