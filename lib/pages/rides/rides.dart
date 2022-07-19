@@ -32,7 +32,7 @@ class _RidesPageState extends State<RidesPage> {
     if (data != null) {
       final ridesData = data as List<dynamic>;
       final rides = ridesData.map((e) => BikeRide.fromMap(e));
-      setState(() => _rides = Stream.value(rides));
+      if (mounted) setState(() => _rides = Stream.value(rides));
     }
   }
 

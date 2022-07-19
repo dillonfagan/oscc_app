@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:oscc_app/common/layouts/app.dart';
-import 'package:oscc_app/common/layouts/main.dart';
+import 'package:oscc_app/layouts/app.dart';
+import 'package:oscc_app/layouts/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SigninPage extends StatefulWidget {

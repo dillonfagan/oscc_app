@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/bike_ride.dart';
-import '../../common/padded_text.dart';
+import '../../widgets/padded_text.dart';
 
 class RideCard extends StatelessWidget {
   final BikeRide ride;

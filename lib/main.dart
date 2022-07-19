@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oscc_app/common/layouts/app.dart';
+import 'package:oscc_app/layouts/app.dart';
 import 'package:oscc_app/pages/signin/signin.dart';
 import 'package:oscc_app/pages/signup/signup.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
