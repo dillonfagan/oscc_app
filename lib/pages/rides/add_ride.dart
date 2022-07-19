@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AddRidePage extends StatefulWidget {
+  const AddRidePage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _AddRidePageState();
@@ -12,8 +14,8 @@ class _AddRidePageState extends State<AddRidePage> {
 
   @override
   void dispose() {
-    super.dispose();
     _dateController.dispose();
+    super.dispose();
   }
 
   @override

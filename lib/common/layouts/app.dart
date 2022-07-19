@@ -4,6 +4,8 @@ import 'package:oscc_app/pages/rides/rides.dart';
 import '../../auth/auth_required_state.dart';
 
 class AppLayout extends StatefulWidget {
+  const AppLayout({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _AppLayoutState();
@@ -12,7 +14,7 @@ class AppLayout extends StatefulWidget {
 
 class _AppLayoutState extends AuthRequiredState<AppLayout> {
   int _selectedPage = 0;
-  final List<Widget> _pages = [RidesPage(), MePage()];
+  final List<Widget> _pages = const [RidesPage(), MePage()];
 
   void _onNavigationTap(int index) {
     setState(() {

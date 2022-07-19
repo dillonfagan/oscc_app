@@ -5,6 +5,8 @@ import '../../models/bike_ride.dart';
 import 'ride_card.dart';
 
 class RidesPage extends StatefulWidget {
+  const RidesPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _RidesPageState();
@@ -38,7 +40,7 @@ class _RidesPageState extends State<RidesPage> {
     return ListView.separated(
       padding: const EdgeInsets.all(8.0),
       itemCount: rides.length,
-      itemBuilder: (context, index) => RideCard(rides[index]),
+      itemBuilder: (context, index) => RideCard(ride: rides[index]),
       separatorBuilder: (context, index) => const SizedBox(height: 8.0),
       physics: const AlwaysScrollableScrollPhysics(),
     );
@@ -83,8 +85,8 @@ class _RidesPageState extends State<RidesPage> {
         child: const Icon(Icons.add),
         backgroundColor: Colors.red,
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => AddRidePage()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const AddRidePage()));
         },
       ),
     );

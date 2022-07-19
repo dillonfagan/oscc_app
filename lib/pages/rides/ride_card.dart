@@ -6,7 +6,7 @@ import '../../common/padded_text.dart';
 class RideCard extends StatelessWidget {
   final BikeRide ride;
 
-  const RideCard(this.ride);
+  const RideCard({Key? key, required this.ride}) : super(key: key);
 
   String _formatTitle() {
     final date =

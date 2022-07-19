@@ -45,7 +45,7 @@ class BikeTeamApp extends StatelessWidget {
           ),
         ),
       ),
-      home: AppLayout(),
+      home: const AppLayout(),
       routes: {
         '/login': (context) => const SigninPage(),
         '/signup': (context) => SignupPage(),
