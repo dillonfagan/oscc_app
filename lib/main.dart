@@ -33,6 +33,7 @@ class BikeTeamApp extends StatelessWidget {
           ),
           elevation: 0,
           backgroundColor: Colors.transparent,
+          foregroundColor: Colors.blue,
         ),
         cardTheme: const CardTheme(
           elevation: 1,

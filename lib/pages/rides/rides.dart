@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oscc_app/pages/rides/add_ride.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/bike_ride.dart';
 import 'ride_card.dart';
@@ -81,7 +82,10 @@ class _RidesPageState extends State<RidesPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         backgroundColor: Colors.red,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddRidePage()));
+        },
       ),
     );
   }

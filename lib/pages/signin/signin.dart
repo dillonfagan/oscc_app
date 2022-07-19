@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oscc_app/common/layouts/app.dart';
 import 'package:oscc_app/common/layouts/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -35,7 +36,10 @@ class _SigninPageState extends State<SigninPage> {
         ));
       });
     } else {
-      Navigator.of(context).pushReplacementNamed('/rides');
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => AppLayout()),
+        (route) => false,
+      );
     }
 
     setState(() => _isLoading = false);
