@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AddRidePage extends StatefulWidget {
   const AddRidePage({Key? key}) : super(key: key);
@@ -10,7 +11,9 @@ class AddRidePage extends StatefulWidget {
 }
 
 class _AddRidePageState extends State<AddRidePage> {
+  static final _dateFormat = DateFormat('EEEE, MMM d');
   final _dateController = TextEditingController();
+  final _timeController = TextEditingController();
 
   @override
   void dispose() {
@@ -20,6 +23,10 @@ class _AddRidePageState extends State<AddRidePage> {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final todayWeekday = now.weekday;
+    final nextSunday = now.add(Duration(days: 7 - todayWeekday));
+
     return Scaffold(
       appBar: AppBar(title: const Text('Add Ride')),
       body: ListView(
@@ -32,12 +39,28 @@ class _AddRidePageState extends State<AddRidePage> {
             onTap: () async {
               final date = await showDatePicker(
                 context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now(),
+                initialDate: nextSunday,
+                firstDate: nextSunday,
                 lastDate: DateTime.now().add(const Duration(days: 60)),
               );
 
-              _dateController.text = date.toString().substring(0, 10);
+              _dateController.text = _dateFormat.format(date!);
+            },
+          ),
+          TextField(
+            controller: _timeController,
+            decoration: const InputDecoration(labelText: 'Time'),
+            readOnly: true,
+            onTap: () async {
+              final time = await showTimePicker(
+                context: context,
+                initialTime: const TimeOfDay(
+                  hour: 8,
+                  minute: 0,
+                ),
+              );
+
+              _timeController.text = time?.format(context) ?? 'Error';
             },
           ),
         ],
