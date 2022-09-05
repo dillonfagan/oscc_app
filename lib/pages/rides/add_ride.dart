@@ -14,6 +14,8 @@ class _AddRidePageState extends State<AddRidePage> {
   static final _dateFormat = DateFormat('EEEE, MMM d');
   final _dateController = TextEditingController();
   final _timeController = TextEditingController();
+  final _locationController = TextEditingController();
+  final _milesController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +36,10 @@ class _AddRidePageState extends State<AddRidePage> {
         children: [
           TextField(
             controller: _dateController,
-            decoration: const InputDecoration(labelText: 'Date'),
+            decoration: const InputDecoration(
+              labelText: 'Date',
+              border: OutlineInputBorder(),
+            ),
             readOnly: true,
             onTap: () async {
               final date = await showDatePicker(
@@ -51,7 +56,10 @@ class _AddRidePageState extends State<AddRidePage> {
           const SizedBox(height: 16),
           TextField(
             controller: _timeController,
-            decoration: const InputDecoration(labelText: 'Time'),
+            decoration: const InputDecoration(
+              labelText: 'Time',
+              border: OutlineInputBorder(),
+            ),
             readOnly: true,
             onTap: () async {
               final time = await showTimePicker(
@@ -64,6 +72,22 @@ class _AddRidePageState extends State<AddRidePage> {
 
               _timeController.text = time?.format(context) ?? '';
             },
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _locationController,
+            decoration: const InputDecoration(
+              labelText: 'Meeting Location',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _milesController,
+            decoration: const InputDecoration(
+              labelText: 'Miles',
+              border: OutlineInputBorder(),
+            ),
           ),
         ],
       ),
