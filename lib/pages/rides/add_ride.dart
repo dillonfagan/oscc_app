@@ -40,13 +40,15 @@ class _AddRidePageState extends State<AddRidePage> {
               final date = await showDatePicker(
                 context: context,
                 initialDate: nextSunday,
-                firstDate: nextSunday,
-                lastDate: DateTime.now().add(const Duration(days: 60)),
+                firstDate: now,
+                lastDate: now.add(const Duration(days: 60)),
               );
 
-              _dateController.text = _dateFormat.format(date!);
+              _dateController.text =
+                  date != null ? _dateFormat.format(date) : '';
             },
           ),
+          const SizedBox(height: 16),
           TextField(
             controller: _timeController,
             decoration: const InputDecoration(labelText: 'Time'),
@@ -60,7 +62,7 @@ class _AddRidePageState extends State<AddRidePage> {
                 ),
               );
 
-              _timeController.text = time?.format(context) ?? 'Error';
+              _timeController.text = time?.format(context) ?? '';
             },
           ),
         ],
